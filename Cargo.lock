@@ -2626,6 +2626,7 @@ dependencies = [
 [[package]]
 name = "speedruns"
 version = "0.21.6-dev"
+source = "git+https://github.com/Masterchef365/speedruns.git?branch=update_err_derive#9e0082cd7434d4af495ded4dd9013e37ef05f794"
 dependencies = [
  "actix-rt",
  "anyhow",
@@ -2642,6 +2643,7 @@ dependencies = [
 [[package]]
 name = "speedruns_api"
 version = "0.21.6-dev"
+source = "git+https://github.com/Masterchef365/speedruns.git?branch=update_err_derive#9e0082cd7434d4af495ded4dd9013e37ef05f794"
 dependencies = [
  "argh",
  "base64 0.12.3",
@@ -2672,6 +2674,7 @@ dependencies = [
 [[package]]
 name = "speedruns_cli"
 version = "0.21.6-dev"
+source = "git+https://github.com/Masterchef365/speedruns.git?branch=update_err_derive#9e0082cd7434d4af495ded4dd9013e37ef05f794"
 dependencies = [
  "argh",
  "log",
@@ -2686,6 +2689,7 @@ dependencies = [
 [[package]]
 name = "speedruns_database"
 version = "0.21.6-dev"
+source = "git+https://github.com/Masterchef365/speedruns.git?branch=update_err_derive#9e0082cd7434d4af495ded4dd9013e37ef05f794"
 dependencies = [
  "chrono",
  "derive_more",
@@ -2709,6 +2713,7 @@ dependencies = [
 [[package]]
 name = "speedruns_juniper"
 version = "0.21.6-dev"
+source = "git+https://github.com/Masterchef365/speedruns.git?branch=update_err_derive#9e0082cd7434d4af495ded4dd9013e37ef05f794"
 dependencies = [
  "actix-cors",
  "actix-web",
@@ -2742,6 +2747,7 @@ dependencies = [
 [[package]]
 name = "speedruns_models"
 version = "0.21.6-dev"
+source = "git+https://github.com/Masterchef365/speedruns.git?branch=update_err_derive#9e0082cd7434d4af495ded4dd9013e37ef05f794"
 dependencies = [
  "chrono",
  "derive_more",
@@ -2757,6 +2763,7 @@ dependencies = [
 [[package]]
 name = "speedruns_utils"
 version = "0.21.6-dev"
+source = "git+https://github.com/Masterchef365/speedruns.git?branch=update_err_derive#9e0082cd7434d4af495ded4dd9013e37ef05f794"
 dependencies = [
  "derive_more",
  "err-derive",

@@ -5,4 +5,5 @@ edition = "2018"
 
 [dependencies]
 anyhow = "1"
-speedruns = { path = "../speedruns" }
+#speedruns = { path = "../speedruns" }
+speedruns = { git = "https://github.com/Masterchef365/speedruns.git", branch = "update_err_derive" }

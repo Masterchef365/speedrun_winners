@@ -1,7 +1,8 @@
 use anyhow::Result;
 use speedruns::juniper::cli::read_table;
-use speedruns::models::{Game, Run, User, RunPlayer};
+use speedruns::models::{Game, Run, RunPlayer, User};
 use std::collections::HashMap;
+use std::path::PathBuf;
 
 fn main() -> Result<()> {
     // Parse args
@@ -10,18 +11,22 @@ fn main() -> Result<()> {
     let game_slug = match args.next() {
         Some(s) => s,
         None => {
-            println!("Usage: {} <game slug>", program_name);
+            println!(
+                "Usage: {} <game slug> <optional: speedruns/data/imported>",
+                program_name
+            );
             return Ok(());
         }
     };
+    let data_root = PathBuf::from(args.next().unwrap_or("../speedruns/data/imported".into()));
 
     // Read tables
     println!("Reading games table");
-    let games: Vec<Game> = read_table("../speedruns/data/imported/games.jsonl").unwrap();
+    let games: Vec<Game> = read_table(data_root.join("games.jsonl").to_str().unwrap()).unwrap();
     println!("Reading runs table");
-    let runs: Vec<Run> = read_table("../speedruns/data/imported/runs.jsonl").unwrap();
+    let runs: Vec<Run> = read_table(data_root.join("runs.jsonl").to_str().unwrap()).unwrap();
     println!("Reading users table");
-    let users: Vec<User> = read_table("../speedruns/data/imported/users.jsonl").unwrap();
+    let users: Vec<User> = read_table(data_root.join("users.jsonl").to_str().unwrap()).unwrap();
 
     // Convert users into a map of ID to username
     println!("Building username table");
@@ -73,11 +78,20 @@ fn main() -> Result<()> {
     let unknown = "unknown".to_string();
     for run in winners {
         let time = run.times_ms.get(&game.primary_timing).unwrap();
-        let names = run.players.iter().map(|p| match p {
-            RunPlayer::UserId(id) => usernames.get(id).unwrap_or(&unknown),
-            RunPlayer::GuestName(g) => g,
-        }).collect::<Vec<&String>>();
-        println!("Winner: {}ms by {:?} on {}", time, names, run.created.unwrap());
+        let names = run
+            .players
+            .iter()
+            .map(|p| match p {
+                RunPlayer::UserId(id) => usernames.get(id).unwrap_or(&unknown),
+                RunPlayer::GuestName(g) => g,
+            })
+            .collect::<Vec<&String>>();
+        println!(
+            "Winner: {}ms by {:?} on {}",
+            time,
+            names,
+            run.created.unwrap()
+        );
     }
 
     Ok(())
